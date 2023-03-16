@@ -3,6 +3,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tribal_trove/screens/home_screen.dart';
 
+import 'product_screen.dart';
+
 class AllProductsScreen extends StatefulWidget {
   const AllProductsScreen({super.key});
 
@@ -162,86 +164,96 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: const EdgeInsets.only(left: 20, right: 20,),
-                        margin: const EdgeInsets.only(top: 10, bottom: 10), 
-                        height: 130,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 120,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.grey[300],
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const ProductScreen(),
                             ),
-                            const SizedBox(width: 20),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "Product Name",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.only(left: 20, right: 20,),
+                          margin: const EdgeInsets.only(top: 10, bottom: 10), 
+                          height: 130,
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 120,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                const SizedBox(height: 5),
-                                Chip(
-                                  label: const Text(
-                                    "Product Category",
+                              ),
+                              const SizedBox(width: 20),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    "Product Name",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Chip(
+                                    label: const Text(
+                                      "Product Category",
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    avatar: const Icon(
+                                      Icons.category,
+                                      size: 16,
+                                    ),
+                                    labelPadding: const EdgeInsets.only(
+                                      left: 5,
+                                      right: 5,
+                                    ),
+                                    visualDensity: VisualDensity.compact,
+                                    backgroundColor: Colors.orangeAccent[100],
+                                    elevation: 5,
+                                  ),
+                                  const SizedBox(height: 5),
+                                  Row(
+                                    children: const [
+                                      Text(
+                                        "Rs. Product Price",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.red,
+                                        ),
+                                      ),
+                                      SizedBox(width: 5),
+                                      Text(
+                                        "Product Discount Price",
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w400,
+                                          decoration: TextDecoration.lineThrough,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 15),
+                                  const Text(
+                                    "Status: Only 4 left in stock",
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
                                     ),
                                   ),
-                                  avatar: const Icon(
-                                    Icons.category,
-                                    size: 16,
-                                  ),
-                                  labelPadding: const EdgeInsets.only(
-                                    left: 5,
-                                    right: 5,
-                                  ),
-                                  visualDensity: VisualDensity.compact,
-                                  backgroundColor: Colors.orangeAccent[100],
-                                  elevation: 5,
-                                ),
-                                const SizedBox(height: 5),
-                                Row(
-                                  children: const [
-                                    Text(
-                                      "Rs. Product Price",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.red,
-                                      ),
-                                    ),
-                                    SizedBox(width: 5),
-                                    Text(
-                                      "Product Discount Price",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w400,
-                                        decoration: TextDecoration.lineThrough,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 15),
-                                const Text(
-                                  "Status: Only 4 left in stock",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -264,7 +276,6 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
             icon: Icon(
               Icons.home,
               size: 40,
-              color: Colors.black
             ),
             label: 'Home',
           ),
@@ -272,7 +283,6 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
             icon: Icon(
               Icons.widgets_outlined,
               size: 40,
-              color: Colors.brown
             ),
             label: 'Categories',
           ),
@@ -280,7 +290,6 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
             icon: Icon(
               Icons.shopping_cart,
               size: 40,
-              color: Colors.black
             ),
             label: 'Cart',
           ),
@@ -288,7 +297,6 @@ class _AllProductsScreenState extends State<AllProductsScreen> {
             icon: Icon(
               Icons.person,
               size: 40,
-              color: Colors.black
             ),
             label: 'Profile',
           ),
