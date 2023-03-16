@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.title});
+import 'all_producs.dart';
 
-  final String title;
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        leading: SizedBox.shrink(),
         titleSpacing: 0,
       ),
       body: SafeArea(
@@ -71,12 +72,22 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Text(
-                      "See All",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AllProductsScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "See All",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                   ],
@@ -95,20 +106,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       height: 100,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Deal",
+                            "Item",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
                           Text(
-                            "of the day",
+                            "${index+1}",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -148,13 +159,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Container(
-                height: 380,
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: Color(0xFFD9D9D9),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                margin: const EdgeInsets.only(left: 20, right: 20),
+                margin: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                 child: GridView.builder(
                   shrinkWrap: true,
                   itemBuilder: (context, index){
@@ -172,7 +182,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         SizedBox(height: 10,),
                         Text(
-                          "Featured",
+                          "Category ${index+1}",
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
@@ -226,9 +236,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: 0,
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.brown,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllProductsScreen(),
+              ),
+            );
+          } else if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllProductsScreen(),
+              ),
+            );
+          } else if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AllProductsScreen(),
+              ),
+            );
+          }
+        },
         backgroundColor: Color(0xFFFEEBCA),
         type: BottomNavigationBarType.fixed,
       )

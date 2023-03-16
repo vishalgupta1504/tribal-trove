@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.brown,
       ),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(title: 'Tribal Trove'),
+      home: const HomeScreen(),
     );
   }
 }
